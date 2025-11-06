@@ -1,0 +1,5 @@
+#SAMARA BRAVO MARTÍNEZ y NAOMI BEETSABE ANTUNEZ SANCHEZ GRUPO: 306
+#gunicorn: servidor WSGI ( recomendado para desplegar la app en produccion.)
+gunicorn
+#Flask: microframework wed usado para desarrollar y ejecutar la aplicacion
+Flask

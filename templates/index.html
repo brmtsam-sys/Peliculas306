@@ -1,0 +1,128 @@
+<!-- SAMARA BREVO MARTINEZ  NL.10    Y   NAOMI BETSABEE ANTUNEZ SANCHEZ NL.4 grupo:306-->
+<!-- Indica que esta plantilla extiende de templates/base.html para reutilizar la estructura -->
+{% extends 'base.html' %}
+
+<!-- Bloque Jinja que establece el título de la página (reemplaza el bloque title de base.html) -->
+{% block title %}Inicio{% endblock %}
+
+<!-- Inicio del bloque content que se insertará dentro de <main> en base.html -->
+{% block content %}
+
+    <!-- Inicio de estilos CSS locales (se aplican solo a esta plantilla) -->
+    <style>
+      /* Variables CSS: colores y radios reutilizables */
+      :root{
+      --fondo: #d0e4ff;   /* azul tenue */
+      --texto: #002f4a;   /* color texto principal */
+      --acento: #1e90ff;  /* color acento */
+      --card: #ffffffcc;  /* fondo tarjeta semitransparente */
+      --radio: 10px;      /* borde redondeado */
+    }
+
+/* Estilos para el elemento body: color de fondo, tipografía y espaciado */
+body{
+  background-color: var(--fondo);
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--texto);
+  margin: 0;
+  padding: 2rem;
+}
+/* Contenedor principal centrado y con ancho máximo */
+main{
+  max-width: 900px;
+  margin: 0 auto;
+}
+/* Estilo para el título principal */
+h1{
+  font-size: 2.2rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
+}
+/* Estilo para párrafos: tamaño y margen inferior */
+p{ font-size: 1.05rem; margin-bottom: 1.25rem; }
+/* Tarjeta que contiene el contenido principal (fondo, padding, sombra) */
+.card{
+  background: var(--card);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radio);
+  box-shadow: 0 6px 18px rgba(11,47,74,0.08);
+}
+/* Estilo para etiquetas (label) */
+label{ display:block; margin-bottom:0.5rem; font-weight:600; }
+/* Estilos para el select del menú desplegable */
+select#categoria{
+  width: 100%;
+  max-width: 420px;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #cfe8ff;
+  background: linear-gradient(180deg, #fff, #f7fbff);
+  color: var(--texto);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: box-shadow .15s ease, transform .08s ease;
+}
+
+/* Estilo cuando el select tiene foco */
+select#categoria:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(30,144,255,0.12);
+  transform: translateY(-1px);
+}
+/*estilo para los enlaces dentro de link*/ 
+.links a {color: var(--acento); text-decoration: none;}
+.links a:hover { text-decoration: underline;}
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 520px){
+    body{ padding: 1rem; }
+    h1 { font-size: 1.6rem;}
+}
+</style>
+
+<!-- Tarjeta principal que contiene el contenido visible dde la pagina -->
+ <main class="card">
+  <!-- Titulo visible de la pagina -->
+  <h1>Bienvenidos al Menú de películas</h1>
+    <!-- texto explicativo corto -->
+    <p>Seleccione la categoría de películas disponibles.</p>
+
+
+    <!-- etiqueta asociada al select -->
+    <label for="categoria">Categoría:</label>
+    <!-- select con opciones que navegan a diferentes rutas correspondientes  -->
+    <select id="categoria" name="categoria" aria-label="Seleccionar categoria">
+        <!-- opcion por defecto vacia -->
+         <optiion value="">-- Elige categoria -- </optiion>
+         <!--opciones que aountan a las rutas definidas en app.py-->
+      <option value="/suspenso">Suspenso</option>
+      <option value="/terror">Terror</option>
+      <option value="/romance">Romance</option>
+      <option value="/infantil">Infantil</option>
+      <option value="/otro">Otro</option>
+    </select>
+    
+    <!-- Bloque con enlaces alternativos para usuarios de JavaScriot -->
+     <div class="links">
+        <noscript>
+            <!-- mensaje informativo dentro de <noscript> -->
+                <p>Si JavaScript esta desactivado, usa los enlaces:</p>
+                <ul>
+                    <li><a href="/suspenso">Suspenso</a></li>
+                    <li><a href="/terror">Terror</a></li>
+                    <li><a href="/romance">Romance</a></li>
+                    <li><a href="/infantil">Infantil</a></li>
+            </ul>
+        </noscript>
+     </div>
+    </main>
+
+    <!--script que redirige al usuario cuando cambia la opcion del select-->
+    <script>
+      /* Selecciona el elemento select por su ID y añade un listener al evento change.
+               Si la opcion selccionada tiene un valor(ruta) , cambia la ubicacion del navegador */
+      document.getElementById('categoria').addEventListener('change', function() {
+        if (this.value) window.location.href = this.value;
+      });
+        </script>
+<!--fin del bloque content que sera insertado en base.html -->
+{% endblock %}

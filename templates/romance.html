@@ -1,0 +1,22 @@
+<!-- SAMARA BREVO MARTINEZ  NL.10    Y   NAOMI BETSABEE ANTUNEZ SANCHEZ NL.4 grupo:306-->
+<!-- Indica que esta plantilla hereda de base.html -->
+{% extends 'base.html' %}
+
+<!-- Define el título de la pestaña -->
+{% block title %}Romance{% endblock %}
+
+<!-- Bloque principal del contenido -->
+{% block content %}
+<!-- Encabezado visible en la página -->
+<h1>Películas de Romance</h1>
+
+<!-- Lista de películas de romance -->
+<ul>
+    {% for pelicula in peliculas %}
+    <!--elemento de lista, muestra codigo en negrita-->
+        <li><strong>{{ pelicula.titulo }}</strong>: {{ pelicula.sinopsis }}</li>
+  <!--Fin de bucle for-->
+        {% endfor %}
+</ul>
+<!--Cierre de bloque 'content'-->
+{% endblock %}
